@@ -1,0 +1,6 @@
+.python-version
+.idea/
+docs/_build
+*.pyc
+*.swp
+*.egg
