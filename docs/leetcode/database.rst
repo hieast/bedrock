@@ -45,7 +45,8 @@ FirstName, LastName, City, State
 
 Answer:
 
-# Write your MySQL query statement below
+.. code block:: sql
+    # Write your MySQL query statement below
     SELECT Person.FirstName, Person.LastName, Address.City, Address.State FROM Person LEFT JOIN Address
      ON Person.PersonId = Address.PersonId
 
