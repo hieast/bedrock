@@ -561,6 +561,7 @@ For example, return the following Ids for the above Weather table:
     JOIN Weather AS q
     ON p.Date = DATE_ADD(q.Date, INTERVAL 1 DAY) AND p.Temperature > q.Temperature
 
+
 262. Trips and Users
 --------------------
 
@@ -615,9 +616,12 @@ The Users table holds all users. Each user has an unique Users_Id, and Role is a
 |    13    |   No   | driver |
 +----------+--------+--------+
 
-Write a SQL query to find the **cancellation rate of requests made by unbanned clients** between Oct 1,
+Write a SQL query to find the **cancellation rate of requests made by unbanned client** between Oct 1,
 2013 and Oct 3, 2013. For the above tables, your SQL query should return the following rows with the
 cancellation rate being rounded to two decimal places.
+
+(1) find out the requests made by unbanned clients ( because the trip is requested by client)
+(2) calculate the cancellation ratio (either by client or driver)
 
 +------------+-------------------+
 |     Day    | Cancellation Rate |
@@ -629,13 +633,14 @@ cancellation rate being rounded to two decimal places.
 | 2013-10-03 |       0.50        |
 +------------+-------------------+
 
+.. code-block:: sql
 
-
-
-
-
-
-
-
-
-
+    SELECT Trips.Request_at AS Day,
+           CAST(SUM(IF((Trips.Status IN ('cancelled_by_client', 'cancelled_by_driver')),
+                       1, 0)
+                 )/COUNT(*) AS DECIMAL(5,2)) AS 'Cancellation Rate'
+    FROM Trips
+    JOIN Users ON Trips.Client_Id = Users.Users_Id
+    WHERE Request_at BETWEEN '2013-10-01' AND '2013-10-03'
+          AND Users.Banned = 'No'
+    GROUP BY Request_at
