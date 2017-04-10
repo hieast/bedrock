@@ -644,3 +644,5 @@ cancellation rate being rounded to two decimal places.
     WHERE Request_at BETWEEN '2013-10-01' AND '2013-10-03'
           AND Users.Banned = 'No'
     GROUP BY Request_at
+
+这道题主要考的是聚合函数的正确使用，属于常见的应用。

@@ -35,6 +35,13 @@ Introduction to Algorithms
    :maxdepth: 1
 
    CLRS/intro
+   CLRS/base
+
+
+.. py:function:: enumerate(sequence[, start=0])
+
+   返回一个迭代器，输出包含索引及*sequence*里所有条目的元组.
+
 
 
 Indices and tables
