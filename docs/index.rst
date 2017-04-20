@@ -23,6 +23,7 @@ LeetCode Online Judge
 
    leetcode/intro
    leetcode/database
+   leetcode/easy
 
 
 Introduction to Algorithms
